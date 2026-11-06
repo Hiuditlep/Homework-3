@@ -4,6 +4,7 @@ import type { ColumnDef } from "./components/data-grid-contract";
 import { AudioVisualizer } from "./components/AudioVisualizer";
 import { FlashSaleEngine } from "./components/FlashSaleEngine";
 import { DrumKit } from "./components/DrumKit/DrumKit";
+import { PolyphonicPiano } from "./components/Piano/PolyphonicPiano";
 
 interface Employee {
   id: number;
@@ -54,9 +55,9 @@ const mockData: Employee[] = [
 ];
 
 export default function App() {
-  // Thêm lab3_hw1 vào state
+  // Thêm lab3_hw2 vào state
   const [activeTab, setActiveTab] = useState<
-    "hw1" | "hw2" | "hw3" | "lab3_hw1"
+    "hw1" | "hw2" | "hw3" | "lab3_hw1" | "lab3_hw2"
   >("hw1");
 
   return (
@@ -69,7 +70,7 @@ export default function App() {
           marginBottom: "32px",
           borderBottom: "2px solid #e2e8f0",
           paddingBottom: "16px",
-          flexWrap: "wrap", // Thêm flexWrap để menu không bị tràn ngang
+          flexWrap: "wrap",
         }}
       >
         <button
@@ -112,7 +113,6 @@ export default function App() {
           HW 3: Flash-Sale Engine
         </button>
 
-        {/* <-- Thêm nút cho Bài 1 của Lab 3 --> */}
         <button
           onClick={() => setActiveTab("lab3_hw1")}
           style={{
@@ -125,6 +125,21 @@ export default function App() {
           }}
         >
           Lab 3 - HW 1: Drum Kit
+        </button>
+
+        {/* <-- Thêm nút cho Bài 2 của Lab 3 --> */}
+        <button
+          onClick={() => setActiveTab("lab3_hw2")}
+          style={{
+            padding: "8px 16px",
+            cursor: "pointer",
+            fontWeight: activeTab === "lab3_hw2" ? "bold" : "normal",
+            backgroundColor: activeTab === "lab3_hw2" ? "#eff6ff" : "#fff",
+            border: "1px solid #cbd5e1",
+            borderRadius: "4px",
+          }}
+        >
+          Lab 3 - HW 2: Piano
         </button>
       </nav>
 
@@ -158,10 +173,17 @@ export default function App() {
         </section>
       )}
 
-      {/* <-- Thêm Giao diện Lab 3 Bài 1 --> */}
+      {/* Giao diện Lab 3 Bài 1 */}
       {activeTab === "lab3_hw1" && (
         <section>
           <DrumKit />
+        </section>
+      )}
+
+      {/* <-- Thêm Giao diện Lab 3 Bài 2 --> */}
+      {activeTab === "lab3_hw2" && (
+        <section>
+          <PolyphonicPiano />
         </section>
       )}
     </main>
