@@ -5,6 +5,7 @@ import { AudioVisualizer } from "./components/AudioVisualizer";
 import { FlashSaleEngine } from "./components/FlashSaleEngine";
 import { DrumKit } from "./components/DrumKit/DrumKit";
 import { PolyphonicPiano } from "./components/Piano/PolyphonicPiano";
+import { PubgArena } from "./components/PubgArena/PubgArena";
 
 interface Employee {
   id: number;
@@ -55,9 +56,9 @@ const mockData: Employee[] = [
 ];
 
 export default function App() {
-  // Thêm lab3_hw2 vào state
+  // Thêm lab3_hw3 vào state
   const [activeTab, setActiveTab] = useState<
-    "hw1" | "hw2" | "hw3" | "lab3_hw1" | "lab3_hw2"
+    "hw1" | "hw2" | "hw3" | "lab3_hw1" | "lab3_hw2" | "lab3_hw3"
   >("hw1");
 
   return (
@@ -127,7 +128,6 @@ export default function App() {
           Lab 3 - HW 1: Drum Kit
         </button>
 
-        {/* <-- Thêm nút cho Bài 2 của Lab 3 --> */}
         <button
           onClick={() => setActiveTab("lab3_hw2")}
           style={{
@@ -140,6 +140,21 @@ export default function App() {
           }}
         >
           Lab 3 - HW 2: Piano
+        </button>
+
+        {/* <-- Thêm nút cho Bài 3 của Lab 3 --> */}
+        <button
+          onClick={() => setActiveTab("lab3_hw3")}
+          style={{
+            padding: "8px 16px",
+            cursor: "pointer",
+            fontWeight: activeTab === "lab3_hw3" ? "bold" : "normal",
+            backgroundColor: activeTab === "lab3_hw3" ? "#eff6ff" : "#fff",
+            border: "1px solid #cbd5e1",
+            borderRadius: "4px",
+          }}
+        >
+          Lab 3 - HW 3: PUBG Arena
         </button>
       </nav>
 
@@ -180,10 +195,17 @@ export default function App() {
         </section>
       )}
 
-      {/* <-- Thêm Giao diện Lab 3 Bài 2 --> */}
+      {/* Giao diện Lab 3 Bài 2 */}
       {activeTab === "lab3_hw2" && (
         <section>
           <PolyphonicPiano />
+        </section>
+      )}
+
+      {/* <-- Thêm Giao diện Lab 3 Bài 3 --> */}
+      {activeTab === "lab3_hw3" && (
+        <section>
+          <PubgArena />
         </section>
       )}
     </main>
