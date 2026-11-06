@@ -20,9 +20,15 @@ export class PolyphonicSynth {
   noteOn(midi: number, freqHz: number) {
     this.initCtx();
     if (!this.ctx) return;
+
+    // BẮT BUỘC: Đánh thức AudioContext nếu trình duyệt đang cho ngủ (Suspend)
+    if (this.ctx.state === "suspended") {
+      this.ctx.resume();
+    }
+
     if (this.voices.has(midi)) return;
 
-    // FIFO Voice Stealing: Release oldest note if maxVoices exceeded
+    // FIFO Voice Stealing: Giải phóng note cũ nhất nếu vượt quá 8 âm
     if (this.voices.size >= this.maxVoices) {
       const oldestMidi = this.voices.keys().next().value;
       if (oldestMidi !== undefined) {
@@ -64,5 +70,4 @@ export class PolyphonicSynth {
   }
 }
 
-// Khởi tạo Singleton Engine dùng chung
 export const synthEngine = new PolyphonicSynth(8);
