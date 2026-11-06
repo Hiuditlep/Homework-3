@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import {
+import type {
   PubgVnSquadStanding,
   PubgCrateDrop,
   DropPhase,
