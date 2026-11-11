@@ -6,6 +6,7 @@ import { FlashSaleEngine } from "./components/FlashSaleEngine";
 import { DrumKit } from "./components/DrumKit/DrumKit";
 import { PolyphonicPiano } from "./components/Piano/PolyphonicPiano";
 import { PubgArena } from "./components/PubgArena/PubgArena";
+import { SituationshipAnalyzer } from "./components/SituationshipAnalyzer/SituationshipAnalyzer"; // <-- Thêm import Bài Bonus
 
 interface Employee {
   id: number;
@@ -56,9 +57,9 @@ const mockData: Employee[] = [
 ];
 
 export default function App() {
-  // Thêm lab3_hw3 vào state
+  // Thêm lab3_bonus vào state
   const [activeTab, setActiveTab] = useState<
-    "hw1" | "hw2" | "hw3" | "lab3_hw1" | "lab3_hw2" | "lab3_hw3"
+    "hw1" | "hw2" | "hw3" | "lab3_hw1" | "lab3_hw2" | "lab3_hw3" | "lab3_bonus"
   >("hw1");
 
   return (
@@ -142,7 +143,6 @@ export default function App() {
           Lab 3 - HW 2: Piano
         </button>
 
-        {/* <-- Thêm nút cho Bài 3 của Lab 3 --> */}
         <button
           onClick={() => setActiveTab("lab3_hw3")}
           style={{
@@ -156,9 +156,25 @@ export default function App() {
         >
           Lab 3 - HW 3: PUBG Arena
         </button>
+
+        {/* <-- Thêm nút cho Bài Bonus của Lab 3 --> */}
+        <button
+          onClick={() => setActiveTab("lab3_bonus")}
+          style={{
+            padding: "8px 16px",
+            cursor: "pointer",
+            fontWeight: activeTab === "lab3_bonus" ? "bold" : "normal",
+            backgroundColor: activeTab === "lab3_bonus" ? "#fce7f3" : "#fff", // Màu hồng nhạt cho nổi bật
+            border: "1px solid #fbcfe8",
+            borderRadius: "4px",
+            color: "#be123c",
+          }}
+        >
+          Lab 3 - Bonus: Situationship
+        </button>
       </nav>
 
-      {/* Giao diện Bài 1 - Giữ nguyên như cũ */}
+      {/* Giao diện Bài 1 */}
       {activeTab === "hw1" && (
         <section>
           <h1 style={{ fontSize: "24px", marginBottom: "16px" }}>
@@ -202,10 +218,17 @@ export default function App() {
         </section>
       )}
 
-      {/* <-- Thêm Giao diện Lab 3 Bài 3 --> */}
+      {/* Giao diện Lab 3 Bài 3 */}
       {activeTab === "lab3_hw3" && (
         <section>
           <PubgArena />
+        </section>
+      )}
+
+      {/* <-- Thêm Giao diện Lab 3 Bài Bonus --> */}
+      {activeTab === "lab3_bonus" && (
+        <section>
+          <SituationshipAnalyzer />
         </section>
       )}
     </main>
